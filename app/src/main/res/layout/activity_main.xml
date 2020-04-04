@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:background="#222020">
+
+        <TextView
+            android:id="@+id/tv_result"
+            android:layout_margin="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="0"
+            android:textSize="50sp"
+            android:textColor="#dfdfdf"
+            android:fontFamily="@font/advent_pro_extralight"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:padding="20dp"
+                android:id="@+id/btn_clear"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#222020"
+                android:text="C"
+                android:textSize="40sp"
+                android:textColor="#d16c30"
+                android:fontFamily="@font/advent_pro_extralight"/>
+            <Button
+                android:padding="0dp"
+                android:id="@+id/btn_mod"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#222020"
+                android:text="%"
+                android:textSize="40sp"
+                android:textColor="#d16c30"
+                android:fontFamily="@font/advent_pro_extralight" />
+            <Button
+                android:padding="0dp"
+                android:id="@+id/btn_fact"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#222020"
+                android:textSize="40sp"
+                android:text="!"
+                android:textColor="#d16c30"
+                android:fontFamily="@font/advent_pro_extralight"/>
+            <Button
+                android:padding="0dp"
+                android:id="@+id/btn_sum"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#222020"
+                android:text="+"
+                android:textColor="#d16c30"
+                android:textSize="40sp"
+                android:fontFamily="@font/advent_pro_extralight" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <Button
+                android:padding="20dp"
+                android:id="@+id/btn_num_1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#222020"
+                android:text="1"
+                android:textSize="40sp"
+                android:textColor="#dfdfdf"
+                android:fontFamily="@font/advent_pro_extralight" />
+            <Button
+                android:padding="0dp"
+                android:id="@+id/btn_num_2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#222020"
+                android:text="2"
+                android:textSize="40sp"
+                android:textColor="#dfdfdf"
+                android:fontFamily="@font/advent_pro_extralight" />
+            <Button
+                android:padding="0dp"
+                android:id="@+id/btn_num_3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#222020"
+                android:text="3"
+                android:textSize="40sp"
+                android:textColor="#dfdfdf"
+                android:fontFamily="@font/advent_pro_extralight" />
+            <Button
+                android:padding="0dp"
+                android:id="@+id/btn_subtract"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#222020"
+                android:text="-"
+                android:textSize="40sp"
+                android:textColor="#d16c30"
+                android:fontFamily="@font/advent_pro_extralight" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <Button
+                android:padding="20dp"
+                android:id="@+id/btn_num_4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#222020"
+                android:text="4"
+                android:textSize="40sp"
+                android:textColor="#dfdfdf"
+                android:fontFamily="@font/advent_pro_extralight" />
+            <Button
+                android:padding="0dp"
+                android:id="@+id/btn_num_5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#222020"
+                android:text="5"
+                android:textSize="40sp"
+                android:textColor="#dfdfdf"
+                android:fontFamily="@font/advent_pro_extralight" />
+            <Button
+                android:padding="0dp"
+                android:id="@+id/btn_num_6"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#222020"
+                android:text="6"
+                android:textSize="40sp"
+                android:textColor="#dfdfdf"
+                android:fontFamily="@font/advent_pro_extralight" />
+            <Button
+                android:padding="0dp"
+                android:id="@+id/btn_multiply"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#222020"
+                android:text="*"
+                android:textSize="40sp"
+                android:textColor="#d16c30"
+                android:fontFamily="@font/advent_pro_extralight" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <Button
+                android:padding="20dp"
+                android:id="@+id/btn_num_7"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#222020"
+                android:text="7"
+                android:textSize="40sp"
+                android:textColor="#dfdfdf"
+                android:fontFamily="@font/advent_pro_extralight"/>
+
+            <Button
+                android:id="@+id/btn_num_8"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="0dp"
+                android:background="#222020"
+                android:text="8"
+                android:textSize="40sp"
+                android:textColor="#dfdfdf"
+                android:fontFamily="@font/advent_pro_extralight"/>
+
+            <Button
+                android:id="@+id/btn_num_9"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#222020"
+                android:padding="0dp"
+                android:text="9"
+                android:textSize="40sp"
+                android:textColor="#dfdfdf"
+                android:fontFamily="@font/advent_pro_extralight"/>
+            <Button
+                android:padding="0dp"
+                android:id="@+id/btn_divide"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#222020"
+                android:text="/"
+                android:textSize="40sp"
+                android:textColor="#d16c30"
+                android:fontFamily="@font/advent_pro_extralight" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+            <Button
+                android:padding="20dp"
+                android:id="@+id/btn_num_0"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#222020"
+                android:text="0"
+                android:textSize="40sp"
+                android:textColor="#dfdfdf"
+                android:fontFamily="@font/advent_pro_extralight" />
+            <Button
+                android:padding="0dp"
+                android:id="@+id/btn_decimal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#222020"
+                android:text="."
+                android:textSize="40sp"
+                android:textColor="#dfdfdf"
+                android:fontFamily="@font/advent_pro_extralight" />
+            <Button
+                android:padding="0dp"
+                android:id="@+id/btn_answer"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#dfdfdf"
+                android:text="="
+                android:textSize="40sp"
+                android:textColor="#d16c30"
+                android:fontFamily="@font/advent_pro_extralight" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
