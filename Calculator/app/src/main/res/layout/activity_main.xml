@@ -155,17 +155,18 @@
                 android:textSize="40sp"
                 android:textColor="#dfdfdf"
                 android:fontFamily="@font/advent_pro_extralight" />
+
             <Button
-                android:padding="0dp"
                 android:id="@+id/btn_num_6"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="#222020"
+                android:fontFamily="@font/advent_pro_extralight"
+                android:padding="0dp"
                 android:text="6"
-                android:textSize="40sp"
                 android:textColor="#dfdfdf"
-                android:fontFamily="@font/advent_pro_extralight" />
+                android:textSize="40sp" />
             <Button
                 android:padding="0dp"
                 android:id="@+id/btn_multiply"
