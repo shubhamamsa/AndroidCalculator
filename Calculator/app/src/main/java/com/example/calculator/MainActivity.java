@@ -14,17 +14,19 @@ public class MainActivity extends AppCompatActivity {
 
 
     private TextView tvResult;
-    private Button btnClear, btnMod, btnFact, btnSum, btnSubtract;
-    private Button btnMultiply, btnDivide, btnDecimal, btnAnswer;
-    private Button btnNum0, btnNum1, btnNum2, btnNum3, btnNum4, btnNum5;
-    private Button btnNum6, btnNum7, btnNum8, btnNum9;
 
-    String expression = new String();
-    Stack<Character> IToP = new Stack<Character>();
+    private Queue<String>expression = new LinkedList<String>();
+    private Stack<Character> IToP = new Stack<Character>();
+    private String temp = new String();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Button btnClear, btnMod, btnFact, btnSum, btnSubtract;
+        Button btnMultiply, btnDivide, btnDecimal, btnAnswer;
+        Button btnNum0, btnNum1, btnNum2, btnNum3, btnNum4, btnNum5;
+        Button btnNum6, btnNum7, btnNum8, btnNum9;
         tvResult = findViewById(R.id.tv_result);
         btnClear = findViewById(R.id.btn_clear);
         btnMod = findViewById(R.id.btn_mod);
@@ -49,92 +51,157 @@ public class MainActivity extends AppCompatActivity {
         btnNum0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                expression+="0";
-                showQueue(expression);
+                temp+="0";
+                showQueue();
             }
         });
         btnNum1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                expression+="1";
-                showQueue(expression);
+                temp+="1";
+                showQueue();
             }
         });
         btnNum2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                expression+="2";
-                showQueue(expression);
+                temp+="2";
+                showQueue();
             }
         });
         btnNum3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                expression+="3";
-                showQueue(expression);
+                temp+="3";
+                showQueue();
             }
         });
         btnNum4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                expression+="4";
-                showQueue(expression);
+                temp+="4";
+                showQueue();
             }
         });
         btnNum5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                expression+="5";
-                showQueue(expression);
+                temp+="5";
+                showQueue();
             }
         });
         btnNum6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                expression+="6";
-                showQueue(expression);
+                temp+="6";
+                showQueue();
             }
         });
         btnNum7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                expression+="7";
-                showQueue(expression);
+                temp+="7";
+                showQueue();
             }
         });
         btnNum8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                expression+="8";
-                showQueue(expression);
+                temp+="8";
+                showQueue();
             }
         });
         btnNum9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                expression+="9";
-                showQueue(expression);
+                temp+="9";
+                showQueue();
+            }
+        });
+        btnDecimal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                temp+=".";
+                showQueue();
             }
         });
         btnClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                expression="";
-                showQueue(expression);
+                delQueue();
+                showQueue();
             }
         });
         btnFact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                expression+="9";
-                showQueue(expression);
+                expression.add(temp);
+                temp="";
+                expression.add("!");
+                showQueue();
+            }
+        });
+        btnSum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                expression.add(temp);
+                temp="";
+                expression.add("+");
+                showQueue();
+            }
+        });
+        btnSubtract.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                expression.add(temp);
+                temp="";
+                expression.add("-");
+                showQueue();
+            }
+        });
+        btnMultiply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                expression.add(temp);
+                temp="";
+                expression.add("*");
+                showQueue();
+            }
+        });
+        btnDivide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                expression.add(temp);
+                temp="";
+                expression.add("/");
+                showQueue();
+            }
+        });
+        btnMod.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                expression.add(temp);
+                temp="";
+                expression.add("%");
+                showQueue();
             }
         });
     }
-    public void showQueue(String exp) {
-            if(exp == "")
-                tvResult.setText("0");
-            else
-                tvResult.setText(exp);
+    public void showQueue() {
+        String output = new String();
+        if(expression.isEmpty() && temp == "")
+            output = "0";
+        else {
+            for (String item : expression)
+                output += item;
+            output = output + temp;
+        }
+        tvResult.setText(output);
+    }
+
+    public void delQueue()  {
+        temp = "";
+        while(!expression.isEmpty())
+            expression.remove();
     }
 }
