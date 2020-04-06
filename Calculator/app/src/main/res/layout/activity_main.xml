@@ -36,8 +36,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="#222020"
-                android:text="C"
-                android:textSize="40sp"
+                android:text="DEL"
+                android:textSize="35sp"
                 android:textColor="#d16c30"
                 android:fontFamily="@font/advent_pro_extralight"/>
             <Button
@@ -240,10 +240,28 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
 
-            <Space
+            <Button
+                android:padding="20dp"
+                android:id="@+id/btn_open_bracket"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="0.5"
+                android:background="#222020"
+                android:text="("
+                android:textSize="40sp"
+                android:textColor="#dfdfdf"
+                android:fontFamily="@font/advent_pro_extralight" />
+            <Button
+                android:padding="20dp"
+                android:id="@+id/btn_close_bracket"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:background="#222020"
+                android:text=")"
+                android:textSize="40sp"
+                android:textColor="#dfdfdf"
+                android:fontFamily="@font/advent_pro_extralight" />
             <Button
                 android:padding="20dp"
                 android:id="@+id/btn_num_0"

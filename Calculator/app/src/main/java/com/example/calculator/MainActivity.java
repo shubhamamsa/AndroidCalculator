@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
@@ -15,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView tvResult;
 
-    private Queue<String>expression = new LinkedList<String>();
+    private Deque<String> expression = new LinkedList<String>();
     private String temp = new String();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         Button btnClear, btnMod, btnFact, btnSum, btnSubtract;
         Button btnMultiply, btnDivide, btnDecimal, btnAnswer;
         Button btnNum0, btnNum1, btnNum2, btnNum3, btnNum4, btnNum5;
-        Button btnNum6, btnNum7, btnNum8, btnNum9;
+        Button btnNum6, btnNum7, btnNum8, btnNum9, btnOBracket, btnCBracket;
         tvResult = findViewById(R.id.tv_result);
         btnClear = findViewById(R.id.btn_clear);
         btnMod = findViewById(R.id.btn_mod);
@@ -36,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         btnDivide = findViewById(R.id.btn_divide);
         btnDecimal = findViewById(R.id.btn_decimal);
         btnAnswer = findViewById(R.id.btn_answer);
+        btnOBracket = findViewById(R.id.btn_open_bracket);
+        btnCBracket = findViewById(R.id.btn_close_bracket);
         btnNum0 = findViewById(R.id.btn_num_0);
         btnNum1 = findViewById(R.id.btn_num_1);
         btnNum2 = findViewById(R.id.btn_num_2);
@@ -124,6 +127,18 @@ public class MainActivity extends AppCompatActivity {
                 showQueue();
             }
         });
+        btnClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(temp.equals("")) {
+                    if (!expression.isEmpty())
+                        expression.removeLast();
+                }
+                else
+                    temp = temp.substring(0, temp.length() - 1);
+                showQueue();
+            }
+        });
         btnClear.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -132,21 +147,47 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+        btnOBracket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!temp.equals("")) {
+                    expression.add(temp);
+                    temp = "";
+                }
+                expression.add("(");
+                showQueue();
+            }
+        });
+        btnCBracket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!temp.equals("")) {
+                    expression.add(temp);
+                    temp = "";
+                }
+                expression.add(")");
+                showQueue();
+            }
+        });
         btnFact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                expression.add(temp);
-                temp="";
-                expression.add("!");
-                showQueue();
+                if(isNum(temp)) {
+                    expression.add(temp);
+                    temp = "";
+                    expression.add("!");
+                    showQueue();
+                }
             }
         });
         btnSum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                expression.add(temp);
-                temp="";
-                expression.add("+");
+                if((!temp.equals("") || expression.peekLast().equals("!")) && !expression.isEmpty()) {
+                    expression.add(temp);
+                    temp = "";
+                    expression.add("+");
+                }
                 showQueue();
             }
         });
@@ -162,18 +203,22 @@ public class MainActivity extends AppCompatActivity {
         btnMultiply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                expression.add(temp);
-                temp="";
-                expression.add("*");
+                if((!temp.equals("") || expression.peekLast().equals("!")) && !expression.isEmpty()) {
+                    expression.add(temp);
+                    temp = "";
+                    expression.add("*");
+                }
                 showQueue();
             }
         });
         btnDivide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                expression.add(temp);
-                temp="";
-                expression.add("/");
+                if((!temp.equals("") || expression.peekLast().equals("!")) && !expression.isEmpty()) {
+                    expression.add(temp);
+                    temp = "";
+                    expression.add("/");
+                }
                 showQueue();
             }
         });
@@ -196,6 +241,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     public void showQueue() {
         String output = new String();
         if(expression.isEmpty() && temp.equals(""))
@@ -205,7 +251,11 @@ public class MainActivity extends AppCompatActivity {
                 output += item;
             output = output + temp;
         }
-        tvResult.setText(output);
+        Display(output);
+    }
+
+    public void Display(String s)   {
+        tvResult.setText(s);
     }
 
     public void delQueue()  {
@@ -220,6 +270,7 @@ public class MainActivity extends AppCompatActivity {
             case "-": return 1;
             case "*": return 2;
             case "/": return 2;
+            case "!": return 3;
             default: return 0;
         }
     }
@@ -230,7 +281,7 @@ public class MainActivity extends AppCompatActivity {
         String temp1 = new String();
         while(!expression.isEmpty()) {
             temp1 = expression.remove();
-            if (temp1.charAt(0) >= '0' && temp1.charAt(0) <= '9')
+            if (isNum(temp1))
                 iToP.add(temp1);
             else if(temp1.equals("("))
                 opr.push(temp1);
@@ -266,7 +317,7 @@ public class MainActivity extends AppCompatActivity {
         double num1=0, num2=0, ans=0;
         while(!postfix.isEmpty())   {
             temp1 = postfix.remove();
-            if(temp1.charAt(0)>='0' && temp1.charAt(0)<='9')
+            if(isNum(temp1))
                 pSolve.push(temp1);
             else if(temp1.equals("!"))   {
                 num1 = Double.parseDouble(pSolve.pop());
@@ -284,7 +335,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static double bCalc(String opr, double num1, double num2)    {
-        double ans = 0.0;
+        double ans = 0;
         switch(opr) {
             case "+": ans = num2+num1;
                 break;
@@ -308,5 +359,20 @@ public class MainActivity extends AppCompatActivity {
         for(int i=2;i<=num;i++)
             factorial*=i;
         return factorial;
+    }
+
+    private static boolean isNum(String s)    {
+        if(s.length()>1)    {
+            if(s.charAt(0) == '-' && s.charAt(1)>='0' && s.charAt(1) <='9')
+                return true;
+            else
+                return false;
+        }
+        else    {
+            if(s.charAt(0)>='0' && s.charAt(0) <= '9')
+                return true;
+            else
+                return false;
+        }
     }
 }
