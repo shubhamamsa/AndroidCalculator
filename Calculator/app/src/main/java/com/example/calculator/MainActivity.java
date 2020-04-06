@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvResult;
 
     private Queue<String>expression = new LinkedList<String>();
-    private Stack<Character> IToP = new Stack<Character>();
     private String temp = new String();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,11 +124,12 @@ public class MainActivity extends AppCompatActivity {
                 showQueue();
             }
         });
-        btnClear.setOnClickListener(new View.OnClickListener() {
+        btnClear.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public void onClick(View v) {
+            public boolean onLongClick(View v) {
                 delQueue();
                 showQueue();
+                return false;
             }
         });
         btnFact.setOnClickListener(new View.OnClickListener() {
@@ -186,10 +186,19 @@ public class MainActivity extends AppCompatActivity {
                 showQueue();
             }
         });
+        btnAnswer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                expression.add(temp);
+                temp = "";
+                infixToPostfix();
+                showQueue();
+            }
+        });
     }
     public void showQueue() {
         String output = new String();
-        if(expression.isEmpty() && temp == "")
+        if(expression.isEmpty() && temp.equals(""))
             output = "0";
         else {
             for (String item : expression)
@@ -203,5 +212,101 @@ public class MainActivity extends AppCompatActivity {
         temp = "";
         while(!expression.isEmpty())
             expression.remove();
+    }
+
+    private int priority(String a)    {
+        switch(a)   {
+            case "+": return 1;
+            case "-": return 1;
+            case "*": return 2;
+            case "/": return 2;
+            default: return 0;
+        }
+    }
+
+    public void infixToPostfix()    {
+        Queue<String> iToP = new LinkedList<String>();
+        Stack<String> opr = new Stack<String>();
+        String temp1 = new String();
+        while(!expression.isEmpty()) {
+            temp1 = expression.remove();
+            if (temp1.charAt(0) >= '0' && temp1.charAt(0) <= '9')
+                iToP.add(temp1);
+            else if(temp1.equals("("))
+                opr.push(temp1);
+            else if(temp1.equals(")"))
+                while(!opr.empty())	{
+                    if(opr.peek().equals("("))	{
+                        opr.pop();
+                        break;
+                    }
+                    else	{
+                        iToP.add(opr.peek());
+                        opr.pop();
+                    }
+                }
+            else	{
+                    while(!opr.empty() && priority(opr.peek()) >= priority(temp1))	{
+                        iToP.add(opr.peek());
+                        opr.pop();
+                    }
+                opr.push(temp1);
+            }
+        }
+        while(!opr.empty())	{
+            iToP.add(opr.peek());
+            opr.pop();
+        }
+        expression.add(result(iToP));
+    }
+
+    public static String result(Queue<String>postfix)    {
+        Stack<String> pSolve = new Stack<String>();
+        String temp1 = new String();
+        double num1=0, num2=0, ans=0;
+        while(!postfix.isEmpty())   {
+            temp1 = postfix.remove();
+            if(temp1.charAt(0)>='0' && temp1.charAt(0)<='9')
+                pSolve.push(temp1);
+            else if(temp1.equals("!"))   {
+                num1 = Double.parseDouble(pSolve.pop());
+                ans = bCalc(temp1, num1, 0);
+                pSolve.push(String.valueOf(ans));
+            }
+            else    {
+                num1 = Double.parseDouble(pSolve.pop());
+                num2 = Double.parseDouble(pSolve.pop());
+                ans = bCalc(temp1, num1, num2);
+                pSolve.push(String.valueOf(ans));
+            }
+        }
+        return pSolve.pop();
+    }
+
+    public static double bCalc(String opr, double num1, double num2)    {
+        double ans = 0.0;
+        switch(opr) {
+            case "+": ans = num2+num1;
+                break;
+            case "-": ans = num2-num1;
+                break;
+            case "*": ans = num2*num1;
+                break;
+            case "/": ans = num2/num1;
+                break;
+            case "%": ans = num2%num1;
+                break;
+            case "!": ans = fact((int)num1);
+                break;
+            default: ans = 0;
+        }
+        return ans;
+    }
+
+    public static long fact(int num)  {
+        long factorial = 1;
+        for(int i=2;i<=num;i++)
+            factorial*=i;
+        return factorial;
     }
 }
