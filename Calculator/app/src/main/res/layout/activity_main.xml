@@ -22,7 +22,7 @@
             android:text="0"
             android:textSize="50sp"
             android:textColor="#dfdfdf"
-            android:fontFamily="@font/advent_pro_extralight"/>
+            android:fontFamily="@font/advent_pro_medium"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,27 +30,20 @@
             android:orientation="horizontal">
 
             <Button
-                android:padding="20dp"
                 android:id="@+id/btn_clear"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="#222020"
+                android:fontFamily="@font/advent_pro_medium"
+                android:padding="20dp"
                 android:text="DEL"
-                android:textSize="35sp"
                 android:textColor="#d16c30"
-                android:fontFamily="@font/advent_pro_extralight"/>
-            <Button
-                android:padding="0dp"
-                android:id="@+id/btn_mod"
+                android:textSize="30sp" />
+            <Space
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="#222020"
-                android:text="%"
-                android:textSize="40sp"
-                android:textColor="#d16c30"
-                android:fontFamily="@font/advent_pro_extralight" />
+                android:layout_weight="1" />
             <Button
                 android:padding="0dp"
                 android:id="@+id/btn_fact"
@@ -61,7 +54,7 @@
                 android:textSize="40sp"
                 android:text="!"
                 android:textColor="#d16c30"
-                android:fontFamily="@font/advent_pro_extralight"/>
+                android:fontFamily="@font/advent_pro_medium"/>
             <Button
                 android:padding="0dp"
                 android:id="@+id/btn_sum"
@@ -72,7 +65,7 @@
                 android:text="+"
                 android:textColor="#d16c30"
                 android:textSize="40sp"
-                android:fontFamily="@font/advent_pro_extralight" />
+                android:fontFamily="@font/advent_pro_medium" />
 
         </LinearLayout>
 
@@ -91,7 +84,7 @@
                 android:text="1"
                 android:textSize="40sp"
                 android:textColor="#dfdfdf"
-                android:fontFamily="@font/advent_pro_extralight" />
+                android:fontFamily="@font/advent_pro_medium" />
             <Button
                 android:padding="0dp"
                 android:id="@+id/btn_num_2"
@@ -102,7 +95,7 @@
                 android:text="2"
                 android:textSize="40sp"
                 android:textColor="#dfdfdf"
-                android:fontFamily="@font/advent_pro_extralight" />
+                android:fontFamily="@font/advent_pro_medium" />
             <Button
                 android:padding="0dp"
                 android:id="@+id/btn_num_3"
@@ -113,7 +106,7 @@
                 android:text="3"
                 android:textSize="40sp"
                 android:textColor="#dfdfdf"
-                android:fontFamily="@font/advent_pro_extralight" />
+                android:fontFamily="@font/advent_pro_medium" />
             <Button
                 android:padding="0dp"
                 android:id="@+id/btn_subtract"
@@ -124,7 +117,7 @@
                 android:text="-"
                 android:textSize="40sp"
                 android:textColor="#d16c30"
-                android:fontFamily="@font/advent_pro_extralight" />
+                android:fontFamily="@font/advent_pro_medium" />
 
         </LinearLayout>
 
@@ -143,7 +136,7 @@
                 android:text="4"
                 android:textSize="40sp"
                 android:textColor="#dfdfdf"
-                android:fontFamily="@font/advent_pro_extralight" />
+                android:fontFamily="@font/advent_pro_medium" />
             <Button
                 android:padding="0dp"
                 android:id="@+id/btn_num_5"
@@ -154,7 +147,7 @@
                 android:text="5"
                 android:textSize="40sp"
                 android:textColor="#dfdfdf"
-                android:fontFamily="@font/advent_pro_extralight" />
+                android:fontFamily="@font/advent_pro_medium" />
 
             <Button
                 android:id="@+id/btn_num_6"
@@ -162,7 +155,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="#222020"
-                android:fontFamily="@font/advent_pro_extralight"
+                android:fontFamily="@font/advent_pro_medium"
                 android:padding="0dp"
                 android:text="6"
                 android:textColor="#dfdfdf"
@@ -177,7 +170,7 @@
                 android:text="*"
                 android:textSize="40sp"
                 android:textColor="#d16c30"
-                android:fontFamily="@font/advent_pro_extralight" />
+                android:fontFamily="@font/advent_pro_medium" />
 
         </LinearLayout>
 
@@ -196,7 +189,7 @@
                 android:text="7"
                 android:textSize="40sp"
                 android:textColor="#dfdfdf"
-                android:fontFamily="@font/advent_pro_extralight"/>
+                android:fontFamily="@font/advent_pro_medium"/>
 
             <Button
                 android:id="@+id/btn_num_8"
@@ -208,7 +201,7 @@
                 android:text="8"
                 android:textSize="40sp"
                 android:textColor="#dfdfdf"
-                android:fontFamily="@font/advent_pro_extralight"/>
+                android:fontFamily="@font/advent_pro_medium"/>
 
             <Button
                 android:id="@+id/btn_num_9"
@@ -220,7 +213,7 @@
                 android:text="9"
                 android:textSize="40sp"
                 android:textColor="#dfdfdf"
-                android:fontFamily="@font/advent_pro_extralight"/>
+                android:fontFamily="@font/advent_pro_medium"/>
             <Button
                 android:padding="0dp"
                 android:id="@+id/btn_divide"
@@ -231,7 +224,7 @@
                 android:text="/"
                 android:textSize="40sp"
                 android:textColor="#d16c30"
-                android:fontFamily="@font/advent_pro_extralight" />
+                android:fontFamily="@font/advent_pro_medium" />
 
         </LinearLayout>
 
@@ -250,7 +243,7 @@
                 android:text="("
                 android:textSize="40sp"
                 android:textColor="#dfdfdf"
-                android:fontFamily="@font/advent_pro_extralight" />
+                android:fontFamily="@font/advent_pro_medium" />
             <Button
                 android:padding="20dp"
                 android:id="@+id/btn_close_bracket"
@@ -261,7 +254,7 @@
                 android:text=")"
                 android:textSize="40sp"
                 android:textColor="#dfdfdf"
-                android:fontFamily="@font/advent_pro_extralight" />
+                android:fontFamily="@font/advent_pro_medium" />
             <Button
                 android:padding="20dp"
                 android:id="@+id/btn_num_0"
@@ -272,7 +265,7 @@
                 android:text="0"
                 android:textSize="40sp"
                 android:textColor="#dfdfdf"
-                android:fontFamily="@font/advent_pro_extralight" />
+                android:fontFamily="@font/advent_pro_medium" />
             <Button
                 android:padding="0dp"
                 android:id="@+id/btn_decimal"
@@ -283,7 +276,7 @@
                 android:text="."
                 android:textSize="40sp"
                 android:textColor="#dfdfdf"
-                android:fontFamily="@font/advent_pro_extralight" />
+                android:fontFamily="@font/advent_pro_medium" />
             <Button
                 android:padding="0dp"
                 android:id="@+id/btn_answer"
@@ -294,7 +287,7 @@
                 android:text="="
                 android:textSize="40sp"
                 android:textColor="#d16c30"
-                android:fontFamily="@font/advent_pro_extralight" />
+                android:fontFamily="@font/advent_pro_medium" />
 
         </LinearLayout>
 
