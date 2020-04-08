@@ -21,11 +21,13 @@ public class MainActivity extends AppCompatActivity {
     Vibrator vibrator;
     private Deque<String> expression = new LinkedList<String>();
     private String temp = new String();
+    private String finalAns = new String();
+    private int nBrackets = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button btnClear, btnFact, btnSum, btnSubtract;
+        Button btnClear, btnFact, btnSum, btnSubtract, btnFinalAns;
         Button btnMultiply, btnDivide, btnDecimal, btnAnswer;
         Button btnNum0, btnNum1, btnNum2, btnNum3, btnNum4, btnNum5;
         Button btnNum6, btnNum7, btnNum8, btnNum9, btnOBracket, btnCBracket;
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         btnAnswer = findViewById(R.id.btn_answer);
         btnOBracket = findViewById(R.id.btn_open_bracket);
         btnCBracket = findViewById(R.id.btn_close_bracket);
+        btnFinalAns = findViewById(R.id.btn_final_ans);
         btnNum0 = findViewById(R.id.btn_num_0);
         btnNum1 = findViewById(R.id.btn_num_1);
         btnNum2 = findViewById(R.id.btn_num_2);
@@ -63,7 +66,10 @@ public class MainActivity extends AppCompatActivity {
                     if (!expression.isEmpty() && (expression.peekLast().equals("!") || expression.peekLast().equals(")")) && temp.equals("")) {
                         expression.add("*");
                     }
-                    temp += "0";
+                    if(!expression.isEmpty() && !expression.peekLast().equals("Ans"))
+                        temp += "0";
+                    else if(expression.isEmpty())
+                        temp += "0";
                     showQueue();
                 }
             }
@@ -74,7 +80,10 @@ public class MainActivity extends AppCompatActivity {
                 vibrator.vibrate(40);
                 if(!expression.isEmpty() && (expression.peekLast().equals("!") || expression.peekLast().equals(")"))&&temp.equals(""))
                     expression.add("*");
-                temp+="1";
+                if(!expression.isEmpty() && !expression.peekLast().equals("Ans"))
+                    temp+="1";
+                else if(expression.isEmpty())
+                    temp += "1";
                 showQueue();
             }
         });
@@ -84,7 +93,10 @@ public class MainActivity extends AppCompatActivity {
                 vibrator.vibrate(40);
                 if(!expression.isEmpty() && (expression.peekLast().equals("!") || expression.peekLast().equals(")"))&&temp.equals(""))
                     expression.add("*");
-                temp+="2";
+                if(!expression.isEmpty() && !expression.peekLast().equals("Ans"))
+                    temp+="2";
+                else if(expression.isEmpty())
+                    temp += "2";
                 showQueue();
             }
         });
@@ -94,7 +106,10 @@ public class MainActivity extends AppCompatActivity {
                 vibrator.vibrate(40);
                 if(!expression.isEmpty() && (expression.peekLast().equals("!") || expression.peekLast().equals(")"))&&temp.equals(""))
                     expression.add("*");
-                temp+="3";
+                if(!expression.isEmpty() && !expression.peekLast().equals("Ans"))
+                    temp+="3";
+                else if(expression.isEmpty())
+                    temp += "3";
                 showQueue();
             }
         });
@@ -104,7 +119,10 @@ public class MainActivity extends AppCompatActivity {
                 vibrator.vibrate(40);
                 if(!expression.isEmpty() && (expression.peekLast().equals("!") || expression.peekLast().equals(")"))&&temp.equals(""))
                     expression.add("*");
-                temp+="4";
+                if(!expression.isEmpty() && !expression.peekLast().equals("Ans"))
+                    temp+="4";
+                else if(expression.isEmpty())
+                    temp += "4";
                 showQueue();
             }
         });
@@ -114,7 +132,10 @@ public class MainActivity extends AppCompatActivity {
                 vibrator.vibrate(40);
                 if(!expression.isEmpty() && (expression.peekLast().equals("!") || expression.peekLast().equals(")"))&&temp.equals(""))
                     expression.add("*");
-                temp+="5";
+                if(!expression.isEmpty() && !expression.peekLast().equals("Ans"))
+                    temp+="5";
+                else if(expression.isEmpty())
+                    temp += "5";
                 showQueue();
             }
         });
@@ -124,7 +145,10 @@ public class MainActivity extends AppCompatActivity {
                 vibrator.vibrate(40);
                 if(!expression.isEmpty() && (expression.peekLast().equals("!") || expression.peekLast().equals(")"))&&temp.equals(""))
                     expression.add("*");
-                temp+="6";
+                if(!expression.isEmpty() && !expression.peekLast().equals("Ans"))
+                    temp+="6";
+                else if(expression.isEmpty())
+                    temp += "6";
                 showQueue();
             }
         });
@@ -134,7 +158,10 @@ public class MainActivity extends AppCompatActivity {
                 vibrator.vibrate(40);
                 if(!expression.isEmpty() && (expression.peekLast().equals("!") || expression.peekLast().equals(")"))&&temp.equals(""))
                     expression.add("*");
-                temp+="7";
+                if(!expression.isEmpty() && !expression.peekLast().equals("Ans"))
+                    temp+="7";
+                else if(expression.isEmpty())
+                    temp += "7";
                 showQueue();
             }
         });
@@ -144,7 +171,10 @@ public class MainActivity extends AppCompatActivity {
                 vibrator.vibrate(40);
                 if(!expression.isEmpty() && (expression.peekLast().equals("!") || expression.peekLast().equals(")"))&&temp.equals(""))
                     expression.add("*");
-                temp+="8";
+                if(!expression.isEmpty() && !expression.peekLast().equals("Ans"))
+                    temp+="8";
+                else if(expression.isEmpty())
+                    temp += "8";
                 showQueue();
             }
         });
@@ -154,7 +184,10 @@ public class MainActivity extends AppCompatActivity {
                 vibrator.vibrate(40);
                 if(!expression.isEmpty() && (expression.peekLast().equals("!") || expression.peekLast().equals(")"))&&temp.equals(""))
                     expression.add("*");
-                temp+="9";
+                if(!expression.isEmpty() && !expression.peekLast().equals("Ans"))
+                    temp+="9";
+                else if(expression.isEmpty())
+                    temp += "9";
                 showQueue();
             }
         });
@@ -168,8 +201,10 @@ public class MainActivity extends AppCompatActivity {
                 for(int i=0;i<temp.length();i++)
                     if(temp.charAt(i) == '.')
                         flag = false;
-                if(flag)
+                if(flag && !expression.isEmpty() && !expression.peekLast().equals("Ans"))
                     temp+=".";
+                else if(expression.isEmpty())
+                    temp += ".";
                 showQueue();
             }
         });
@@ -197,6 +232,7 @@ public class MainActivity extends AppCompatActivity {
                 vibrator.vibrate(100);
                 delQueue();
                 showQueue();
+                finalAns = "";
                 return false;
             }
         });
@@ -210,6 +246,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if(!expression.isEmpty() &&(isNum(expression.peekLast()) || expression.peekLast().equals("!")))
                     expression.add("*");
+                nBrackets++;
                 expression.add("(");
                 showQueue();
             }
@@ -222,8 +259,19 @@ public class MainActivity extends AppCompatActivity {
                     expression.add(temp);
                     temp = "";
                 }
-                if(!expression.isEmpty() && (isNum(expression.peekLast()) || expression.peekLast().equals("!")))
+                if(!expression.isEmpty() && (isNum(expression.peekLast()) || expression.peekLast().equals("!")) && nBrackets >0) {
                     expression.add(")");
+                    nBrackets--;
+                }
+                showQueue();
+            }
+        });
+        btnFinalAns.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                vibrator.vibrate(40);
+                if(temp.equals("") && !finalAns.equals(""))
+                    expression.add("Ans");
                 showQueue();
             }
         });
@@ -259,7 +307,7 @@ public class MainActivity extends AppCompatActivity {
                 vibrator.vibrate(40);
                 if(expression.isEmpty() && temp.equals(""))
                     temp = "-"+temp;
-                else if(!expression.isEmpty() && expression.peekLast().equals("("))
+                else if(!expression.isEmpty() && expression.peekLast().equals("(") && temp.equals(""))
                     temp = "-"+temp;
                 else if(isNum(temp)) {
                     expression.add(temp);
@@ -304,11 +352,12 @@ public class MainActivity extends AppCompatActivity {
                     expression.add(temp);
                     temp = "";
                 }
-                if(!expression.isEmpty() && (isNum(expression.peekLast()) || expression.peekLast().equals("!") || expression.peekLast().equals(")"))) {
-                    infixToPostfix();
-                    showQueue();
+                if((!expression.isEmpty() && (isNum(expression.peekLast()) || expression.peekLast().equals("!") || expression.peekLast().equals(")")) && nBrackets == 0)) {
+                    finalAns = infixToPostfix();
+                    Display(finalAns);
                 }
-
+                else if(!finalAns.equals(""))
+                    Display(finalAns);
                 else
                     Display("Invalid Operation");
             }
@@ -348,13 +397,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void infixToPostfix()    {
+    public String infixToPostfix()    {
         Queue<String> iToP = new LinkedList<String>();
         Stack<String> opr = new Stack<String>();
         String temp1 = new String();
         while(!expression.isEmpty()) {
             temp1 = expression.remove();
-            if (isNum(temp1))
+            if(temp1.equals("Ans"))
+                iToP.add(finalAns);
+            else if (isNum(temp1))
                 iToP.add(temp1);
             else if(temp1.equals("("))
                 opr.push(temp1);
@@ -379,7 +430,7 @@ public class MainActivity extends AppCompatActivity {
         }
         while(!opr.empty())
             iToP.add(opr.pop());
-        expression.add(result(iToP));
+        return result(iToP);
     }
 
     public static String result(Queue<String>postfix)    {
@@ -436,6 +487,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private static boolean isNum(String s) {
+        if(s.equals("Ans"))
+            return true;
         if (s.length() > 0) {
             if (s.charAt(0) >= '0' && s.charAt(0) <= '9')
                 return true;
